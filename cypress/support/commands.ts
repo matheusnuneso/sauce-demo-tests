@@ -12,3 +12,9 @@ Cypress.Commands.add('loginViaCookie', (user) => {
     cy.setCookie('session-username', user)
     cy.visit('/inventory.html', { failOnStatusCode: false })
 })
+
+Cypress.Commands.add('checkErrorMsg', (msg) => {
+  cy.getBySel('error')
+    .should('be.visible')
+    .and('contain', msg)
+})
