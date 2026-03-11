@@ -4,6 +4,7 @@ declare global {
       getBySel(selector: string): Chainable<JQuery<HTMLElement>>
       login(user: string, password: string): void
       loginViaCookie(user: string): void
+      checkErrorMsg(masg: string): void
     }
   }
 }

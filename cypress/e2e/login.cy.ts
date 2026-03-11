@@ -18,9 +18,7 @@ describe('Login scenarios', () => {
 
     cy.login(randomUser, randomPassword)
 
-    cy.getBySel('error')
-      .should('be.visible')
-      .and('contain.text', 'Username and password do not match any user in this service')
+    cy.checkErrorMsg('Username and password do not match any user in this service')
   })
 
   it('logout', () => {
