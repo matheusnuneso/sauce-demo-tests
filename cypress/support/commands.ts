@@ -3,6 +3,7 @@ Cypress.Commands.add('getBySel', (selector) => {
 })
 
 Cypress.Commands.add('login', (email, password) => {
-    cy.log(email)
-    cy.log(password)
+    cy.getBySel('username').type(email)
+    cy.getBySel('password').type(password)
+    cy.getBySel('login-button').click()
 })
