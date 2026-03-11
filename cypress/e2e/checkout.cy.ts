@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
 
-describe('Login scenarios', () => {
+describe('Checkout scenarios', () => {
   beforeEach(() => {
     cy.loginViaCookie(Cypress.env('standard_user'))
   })
