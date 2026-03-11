@@ -10,16 +10,18 @@ describe('Product scenarios', () => {
     cy.getBySel('inventory-item-name').should('have.text', 'Sauce Labs Bolt T-Shirt')
   })
 
-  it('should display 1 in the cart badge after adding a product in the inventory page', () => {
+  it('adding a product in inventory page', () => {
     cy.getBySel('add-to-cart-sauce-labs-backpack').click()
 
+    cy.getBySel('remove-sauce-labs-backpack').should('be.visible')
     cy.getBySel('shopping-cart-badge').should('have.text', 1)
   })
 
-  it('should display 1 in the cart badge after adding a product in the item page', () => {
+  it('adding a product in item page', () => {
     cy.getBySel('item-1-title-link').click()
     cy.getBySel('add-to-cart').click()
 
+    cy.getBySel('remove').should('be.visible')
     cy.getBySel('shopping-cart-badge').should('have.text', 1)
   })
 
