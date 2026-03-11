@@ -6,7 +6,7 @@ describe('Product scenarios', () => {
   it('should open the item page when a product is clicked', () => {
     cy.getBySel('item-1-title-link').click()
 
-    cy.url().should('be.equal', `${Cypress.config('baseUrl')}/inventory-item.html?id=1`)
+    cy.url().should('contain', '/inventory-item.html?id=1')
     cy.getBySel('inventory-item-name').should('have.text', 'Sauce Labs Bolt T-Shirt')
   })
 

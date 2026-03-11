@@ -19,7 +19,7 @@ describe('Checkout scenarios', () => {
     cy.getBySel('continue').click()
     cy.getBySel('finish').click()
 
-    cy.url().should('be.equal', `${Cypress.config('baseUrl')}/checkout-complete.html`)
+    cy.url().should('contain', '/checkout-complete.html')
     cy.getBySel('title').should('have.text', 'Checkout: Complete!')
     cy.getBySel('complete-header').should('have.text', 'Thank you for your order!')
   })

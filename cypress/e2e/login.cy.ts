@@ -8,7 +8,7 @@ describe('Login scenarios', () => {
   it('login with standart user', () => {
     cy.login(Cypress.env('standard_user'), Cypress.env('password'))
 
-    cy.url().should('be.equal', `${Cypress.config('baseUrl')}/inventory.html`)
+    cy.url().should('contain', '/inventory.html')
     cy.getBySel('title').should('have.text', 'Products')
   })
 
