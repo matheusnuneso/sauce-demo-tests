@@ -1,3 +1,5 @@
+import { faker } from '@faker-js/faker'
+
 describe('Login scenarios', () => {
   beforeEach(() => {
     cy.visit('/')
@@ -11,7 +13,10 @@ describe('Login scenarios', () => {
   })
 
   it('login with non-existent user', () => {
-    cy.login("invalid_user", "invalid_password")
+    const randomUser = faker.internet.username()
+    const randomPassword = faker.internet.password();
+
+    cy.login(randomUser, randomPassword)
 
     cy.getBySel('error')
       .should('be.visible')
