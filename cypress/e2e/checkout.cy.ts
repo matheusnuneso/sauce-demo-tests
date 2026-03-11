@@ -2,8 +2,7 @@ import { faker } from '@faker-js/faker'
 
 describe('Login scenarios', () => {
   beforeEach(() => {
-    cy.visit('/')
-    cy.login(Cypress.env('standard_user'), Cypress.env('password'))
+    cy.loginViaCookie(Cypress.env('standard_user'))
   })
 
   it('should complete the checkout process successfully', () => {

@@ -24,7 +24,7 @@ describe('Login scenarios', () => {
   })
 
   it('logout', () => {
-    cy.login(Cypress.env('standard_user'), Cypress.env('password'))
+    cy.loginViaCookie(Cypress.env('standard_user'))
     
     cy.get('#react-burger-menu-btn').click()
     cy.getBySel('logout-sidebar-link')

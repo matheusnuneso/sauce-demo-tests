@@ -2,7 +2,8 @@ declare global {
   namespace Cypress {
     interface Chainable {
       getBySel(selector: string): Chainable<JQuery<HTMLElement>>
-      login(email: string, password: string): void
+      login(user: string, password: string): void
+      loginViaCookie(user: string): void
     }
   }
 }
