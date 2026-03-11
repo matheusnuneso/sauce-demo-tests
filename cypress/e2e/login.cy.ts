@@ -23,5 +23,15 @@ describe('Login scenarios', () => {
       .and('contain.text', 'Username and password do not match any user in this service')
   })
 
+  it('logout', () => {
+    cy.login(Cypress.env('standard_user'), Cypress.env('password'))
+    
+    cy.get('#react-burger-menu-btn').click()
+    cy.getBySel('logout-sidebar-link')
+      .should('be.visible')
+      .click()
 
+    cy.url().should('be.equal', `${Cypress.config('baseUrl')}/`)
+    cy.getBySel('login-button').should('be.visible')
+  })
 })
