@@ -9,4 +9,14 @@ describe('Login scenarios', () => {
     cy.url().should('be.equal', `${Cypress.config('baseUrl')}/inventory.html`)
     cy.getBySel('title').should('have.text', 'Products')
   })
+
+  it('login with non-existent user', () => {
+    cy.login("invalid_user", "invalid_password")
+
+    cy.getBySel('error')
+      .should('be.visible')
+      .and('contain.text', 'Username and password do not match any user in this service')
+  })
+
+
 })
