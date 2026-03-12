@@ -4,26 +4,34 @@ Projeto de automação de testes E2E na aplicação [SauceDemo](https://www.sauc
 
 ## Instruções
 
-É **pre-requisito** ter o Node.js e npm instalados para clonar e executar os testes deste projeto.
+É **pre-requisito** ter o **Node.js** e **npm** instalados para clonar e executar os testes deste projeto.
 
 > Neste projeto utilizei as versões:
 > - node `24.14.0`
 > - npm `11.9.0`
 
-### Instalação
+### Instalação e Execução
 
-Execute o comando `git clone https://github.com/matheusnuneso/sauce-demo-tests.git`
+1. Clone o repositório
+    ```sh
+    git clone https://github.com/matheusnuneso/sauce-demo-tests.git
+    ```
+2. Instale as dependências
+    ```sh
+    npm install
+    ```
 
-Na raiz do projeto, execute o comando `npm install` para instalar as dependências do projeto.
+3. Renomeie o arquivo [`cypress.env.example.json`](./cypress.env.example.json) para `cypress.env.json`. Em seguida, adicione nele as mesmas credenciais válidas que serão utilizadas para executar a suíte de testes.
 
-### Testes
+4. Rode os testes em modo _headless_ ou abra o Cypress App
+    ```sh
+    npm test
+    ```
+    ```sh
+    npm run cy:open
+    ```
 
-> Antes de executar os testes faça uma cópia do arquivo [`cypress.env.example.json`](./cypress.env.example.json) e nomei-o como `cypress.env.json`. Então adicione as mesmas credenciais válidas, as quais serão utilizadas nessa suíte.
-
-Execute `npm test` para rodar os testes em modo _headless_.
-Ou, `npm run cy:open` para abrir o Cypress App.
-
-## Estratégia
+## Decisões Técnicas
 
 ### Estrutura
 
@@ -74,10 +82,28 @@ Neste projeto foi utilizada a biblioteca [Faker.js](https://fakerjs.dev/guide/) 
 
 De acordo com as [boas práticas](https://dev.to/radha_4c842d8e4362a7cdd9c/dynamic-data-in-test-automation-guide-to-best-practices-4acg), o uso de dados aleatórios permite que os cenários simulem melhor interações reais do usuário e evita dependência de dados estáticos, aumentando a cobertura dos testes.
 
+## Melhorias
+Devido ao prazo limitado para a implementação do desafio, algumas melhorias planejadas não puderam ser incluídas nesta versão do projeto. Caso houvesse mais tempo disponível, as seguintes evoluções seriam implementadas:
 
+### Relatórios
 
+Implementar a geração de relatórios detalhados após a execução dos testes, facilitando a análise de resultados e a identificação de falhas. Algumas ferramentas que poderiam ser utilizadas:
 
+- [Mochawesome Reporter](https://www.npmjs.com/package/cypress-mochawesome-reporter)
+- [Allure Report](https://allurereport.org/docs/cypress/)
+- [Cypress Cloud](https://www.cypress.io/cloud)
 
+### CI/CD
 
+Configurar uma pipeline de integração contínua para execução automática da suíte de testes. Isso garantiria validações contínuas da aplicação.
 
+- [GitHub Actions](https://docs.cypress.io/app/continuous-integration/github-actions)
+- [GitLab CI](https://docs.cypress.io/app/continuous-integration/gitlab-ci)
 
+### Atualização do Cypress
+
+Durante o desenvolvimento foi identificada a existência de versões mais recentes do Cypress (como a `v15.11.0`), nas quais o uso de `Cypress.env()` foi depreciado por questões de segurança, sendo substituído por abordagens como `cy.env()` ou `cy.expose()`.
+
+A atualização não foi realizada nesta versão do projeto pois demandaria a refatoração de partes da suíte de testes para adaptação às novas práticas recomendadas. Considerando o prazo do desafio, optou-se por priorizar a implementação e estabilidade dos testes E2E.
+
+Em um cenário de evolução do projeto, a atualização da versão do Cypress e a adequação do código às novas APIs seriam passos importantes para manter a suíte alinhada às melhores práticas da ferramenta.
