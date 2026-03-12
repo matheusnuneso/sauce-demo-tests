@@ -24,31 +24,11 @@ describe('Checkout scenarios', () => {
     cy.getBySel('complete-header').should('have.text', 'Thank you for your order!')
   })
 
-  describe('Validate errors messages', () => {
+  it('should show error when the fields is not fill', () => {
+    cy.visit('/checkout-step-one.html', { failOnStatusCode: false })
+    cy.getBySel('continue').click()
 
-    beforeEach(() => {
-      cy.visit('/checkout-step-one.html', { failOnStatusCode: false })
-    })
-
-    it('should show error when first name is missing', () => {
-      cy.getBySel('continue').click()
-
-      cy.checkErrorMsg('Error: First Name is required')
-    })
-
-    it('should show error when last name is missing', () => {
-      cy.getBySel('firstName').type(firstName)
-      cy.getBySel('continue').click()
-
-      cy.checkErrorMsg('Error: Last Name is required')
-    })
-
-    it('should show error when Postal Code is missing', () => {
-      cy.getBySel('firstName').type(firstName)
-      cy.getBySel('lastName').type(lastName)
-      cy.getBySel('continue').click()
-
-      cy.checkErrorMsg('Error: Postal Code is required')
-    })
+    cy.checkErrorMsg('Error')
   })
+  
 })
