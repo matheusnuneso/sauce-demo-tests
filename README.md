@@ -16,7 +16,7 @@ Projeto de automação de testes E2E na aplicação [SauceDemo](https://www.sauc
     ```sh
     git clone https://github.com/matheusnuneso/sauce-demo-tests.git
     ```
-2. Instale as dependências
+2. Na raiz do projeto, instale as dependências
     ```sh
     npm install
     ```
