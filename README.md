@@ -4,7 +4,7 @@ Projeto de automação de testes E2E na aplicação [SauceDemo](https://www.sauc
 
 ## Instruções
 
-É **pre-requisito** ter o **Node.js** e **npm** instalados para clonar e executar os testes deste projeto.
+É **pre-requisito** ter o **Node.js** e **npm** instalados para  executar os testes deste projeto.
 
 > Neste projeto utilizei as versões:
 > - node `24.14.0`
