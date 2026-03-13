@@ -4,9 +4,10 @@ Projeto de automação de testes E2E na aplicação [SauceDemo](https://www.sauc
 
 ## Instruções
 
-É **pre-requisito** ter o **Node.js** e **npm** instalados para  executar os testes deste projeto.
+É pré-requisito ter o **Node.js** e **npm** instalados para  executar os testes deste projeto.
 
-> Neste projeto utilizei as versões:
+> [!Note]
+> Neste projeto foram utilizadas as versões:
 > - node `24.14.0`
 > - npm `11.9.0`
 
@@ -21,9 +22,17 @@ Projeto de automação de testes E2E na aplicação [SauceDemo](https://www.sauc
     npm install
     ```
 
-3. Renomeie o arquivo [`cypress.env.example.json`](./cypress.env.example.json) para `cypress.env.json`. Em seguida, adicione nele as mesmas credenciais válidas que serão utilizadas para executar a suíte de testes.
+3. Faça uma cópia do arquivo [`cypress.env.example.json`](./cypress.env.example.json) e renomeie-o para `cypress.env.json`
+   
+4. Em seguida, adicione as credenciais válidas que serão utilizadas para executar a suíte de testes.
+    ```sh
+    {
+        "standard_user": "standard_user",
+        "password": "secret_sauce"
+    }
+    ```
 
-4. Rode os testes em modo _headless_ ou abra o Cypress App
+5. Rode os testes em modo _headless_ ou abra o **Cypress App**
     ```sh
     npm test
     ```
@@ -31,11 +40,22 @@ Projeto de automação de testes E2E na aplicação [SauceDemo](https://www.sauc
     npm run cy:open
     ```
 
+## Estratégia de Testes
+
+A estratégia adotada para esta suíte foi focada na validação dos fluxos críticos do usuário dentro da aplicação.
+
+- Login no sistema
+- Manipulação de produtos no carrinho
+- Processo de checkout
+- Validação de erros de campos obrigatórios
+
+Essa abordagem permite validar o comportamento da aplicação do ponto de vista do usuário final, garantindo que os principais fluxos estejam funcionando corretamente.
+
 ## Decisões Técnicas
 
 - ### Estrutura
 
-    A **estrutura da suíte de testes** foi organizada isolando as _specs_ por funcionalidade, seguindo as melhores práticas recomendadas pelo [Cypress](https://docs.cypress.io/app/core-concepts/best-practices#Organizing-Tests-Logging-In-Controlling-State) para organização de testes E2E.
+    A estrutura foi organizada isolando as _specs_ por funcionalidade, seguindo as melhores práticas recomendadas pelo [Cypress](https://docs.cypress.io/app/core-concepts/best-practices#Organizing-Tests-Logging-In-Controlling-State) para organização dos testes.
 
     ```sh
     cypress/
@@ -50,7 +70,7 @@ Projeto de automação de testes E2E na aplicação [SauceDemo](https://www.sauc
     │ └─ index.d.ts
     ```
 
-    Essa abordagem facilita a **manutenção**, **legibilidade** e **escalabilidade** da suíte de testes, permitindo que cada arquivo concentre cenários relacionados a uma funcionalidade específica da aplicação.
+    Essa abordagem facilita a manutenção, legibilidade e escalabilidade da suíte de testes, permitindo que cada arquivo concentre cenários relacionados a uma funcionalidade específica da aplicação.
 
 - ### Reutilização de código
 
@@ -62,7 +82,7 @@ Projeto de automação de testes E2E na aplicação [SauceDemo](https://www.sauc
 
     Um exemplo é o comando `loginViaCookie`, que realiza o _login_ programaticamente por meio de cookies. Essa abordagem reduz o tempo de execução dos testes e evita repetir fluxos que já são cobertos por outros cenários.
 
-    Essa estratégia também segue recomendações da documentação oficial do [Cypress](https://docs.cypress.io/app/core-concepts/best-practices#Organizing-Tests-Logging-In-Controlling-State).
+    Essa estratégia também segue recomendações da documentação oficial do [Cypress](https://www.cypress.io/blog/stop-using-page-objects-and-start-using-app-actions).
 
 - ### Estratégia de seletores
 
@@ -102,8 +122,8 @@ Devido ao prazo limitado para a implementação do desafio, algumas melhorias pl
 
 - ### Atualização do Cypress
 
-    Durante o desenvolvimento foi identificada a existência de versões mais recentes do Cypress (como a `v15.11.0`), nas quais o uso de `Cypress.env()` foi depreciado por questões de segurança, sendo substituído por abordagens como `cy.env()` ou `cy.expose()`.
+    Durante o desenvolvimento foi identificado que a partir da versão `15.10.0` do Cypress, o uso de `Cypress.env()` foi [depreciado](https://docs.cypress.io/app/references/migration-guide#Migrating-away-from-Cypressenv) por questões de segurança, sendo substituído por abordagens como `cy.env()` ou `cy.expose()`.
 
-    A atualização não foi realizada nesta versão do projeto pois demandaria a refatoração de partes da suíte de testes para adaptação às novas práticas recomendadas. Considerando o prazo do desafio, optou-se por priorizar a implementação e estabilidade dos testes E2E.
+    A atualização não foi realizada nesta versão do projeto pois demandaria a refatoração de partes do código para adaptação às novas práticas recomendadas. Considerando o prazo do desafio, optou-se por priorizar a implementação e estabilidade dos testes.
 
     Em um cenário de evolução do projeto, a atualização da versão do Cypress e a adequação do código às novas APIs seriam passos importantes para manter a suíte alinhada às melhores práticas da ferramenta.
