@@ -42,7 +42,7 @@ Projeto de automação de testes E2E na aplicação [SauceDemo](https://www.sauc
 
 ## Estratégia de Testes
 
-A estratégia adotada para esta suíte foi focada na validação dos fluxos críticos do usuário dentro da aplicação.
+A estratégia adotada para esta suíte foi focada na validação dos fluxos críticos da aplicação.
 
 - Login no sistema
 - Manipulação de produtos no carrinho
@@ -88,7 +88,7 @@ Essa abordagem permite validar o comportamento da aplicação do ponto de vista 
 
     A aplicação [SauceDemo](https://www.saucedemo.com) disponibiliza o atributo ``data-test`` na maioria dos elementos da interface. Por esse motivo, não foi necessário criar seletores complexos.
 
-    Os seletores `data-test` são descritivos e estáveis, o que permite utilizá-los diretamente nos testes. Dessa forma, os seletores foram mantidos **inline** nos arquivos de teste, simplificando a leitura e reduzindo camadas desnecessárias de abstração.
+    Os seletores `data-test` são descritivos e estáveis, o que permite utilizá-los diretamente nos testes. Dessa forma, os seletores foram mantidos _inline_ nos arquivos de teste, simplificando a leitura e reduzindo camadas desnecessárias de abstração.
 
     Essa abordagem também está alinhada com as recomendações da documentação do [Cypress](https://docs.cypress.io/app/core-concepts/best-practices#Selecting-Elements).
 
